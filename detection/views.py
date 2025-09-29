@@ -66,10 +66,12 @@ class HealthPredictionView(APIView):
         try:
             record_path = save_ecg_files(dat_file, hea_file)
             # Run prediction
-            probability = pipeline.predict(record_path, int(age), float(sex))  # sex as numeric if needed
+            results = pipeline.predict(record_path, int(age), float(sex))  # sex as numeric if needed
 
             return Response({
-                "probability": probability[0][1]           
+                "probability": results[0][0],
+                "preprocessed_signals": results[1],
+                "sig_names" : results[2]         
                 })
 
         except Exception as e:

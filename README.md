@@ -8,7 +8,7 @@ The API accepts **12-lead ECG signals** (in `.dat` + `.hea` format), along with 
 ## 🚀 Features
 
 - Django REST Framework API with a single endpoint:
-  - `POST /api/healthprediction/`
+  - `POST /api/hfprediction/`
 - Inputs:
   - `age` (integer)
   - `sex` (0 = female, 1 = male)

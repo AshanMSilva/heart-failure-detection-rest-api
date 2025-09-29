@@ -32,9 +32,9 @@ class Pipeline():
 
     def __load_feature_extractor_model(self, full_model_filepath):
         custom_objs = {"F1ScoreBinary": F1ScoreBinary, "f1": F1ScoreBinary()}
-        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+
         base = load_model(full_model_filepath, compile=False, custom_objects=custom_objs)
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
         for i, layer in enumerate(base.layers):
             print(i, layer.name, layer.__class__.__name__)
         backbone = base.get_layer("sequential_4")
@@ -74,4 +74,5 @@ class Pipeline():
         feature_extractor_model = self.__load_feature_extractor_model(self.cnn_model_filepath)
         features = self.__combine_metadata_with_ecg_features(self.__extract_features(feature_extractor_model, preprocessed_signal), age, sex)
         traditional_ml_model = self.__load_traditional_ml_model(self.traditional_ml_model_filepath)
-        return self.__predict_hf_probability(traditional_ml_model, self.__get_scaled_features(self.scalar, features))
+        prediction = self.__predict_hf_probability(traditional_ml_model, self.__get_scaled_features(self.scalar, features))
+        return [prediction, preprocessed_signal, sig_names]
