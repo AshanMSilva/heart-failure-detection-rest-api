@@ -98,12 +98,15 @@ Example Response:
 
 ```bash
 {
-  "prediction": 0.82
+  "probability": Array(),
+  "preprocessed_signals": Array(),
+  "sig_names" : Array()
 }
 ```
 
 ## 📂 Project Structure
 
+```graphql
 heart-failure-detection-rest-api/
 │
 ├── codes/ # Saved models (CNN, ML, scaler)
@@ -112,6 +115,7 @@ heart-failure-detection-rest-api/
 ├── requirements.txt # Python dependencies
 ├── manage.py
 └── README.md
+```
 
 ## 🧑‍💻 Development Notes
 
