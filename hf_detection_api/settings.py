@@ -28,7 +28,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['13.236.146.253', 'localhost', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://heart-failure-detection-frontend.s3-website-ap-southeast-2.amazonaws.com/",
 ]
 
 # Application definition
